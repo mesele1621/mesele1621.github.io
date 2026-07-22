@@ -37,8 +37,46 @@
     color:#fff;padding:5rem 0 3.5rem;text-align:center;
   }
   .page-hero .section-kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;font-weight:700;color:var(--sky);margin-bottom:1rem;}
-  .page-hero h1{font-size:clamp(2.1rem,4.6vw,3rem);font-weight:700;margin-bottom:.9rem;}
+  .page-hero h1{font-size:clamp(2.1rem,4.6vw,3rem);font-weight:700;margin-bottom:.5rem;}
+  .page-hero .role-line{color:var(--accent-2);font-weight:600;font-size:1.05rem;margin-bottom:1rem;}
   .page-hero p{color:rgba(255,255,255,.75);max-width:640px;margin:0 auto;font-size:1.02rem;line-height:1.7;}
+  .fact-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin:1.6rem 0;}
+  .fact-chip{
+    display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:600;color:#fff;
+    border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:.45rem 1rem;background:rgba(255,255,255,.06);
+  }
+  .page-hero .btn-primary-cta{background:var(--accent-2);border:none;color:var(--navy);font-weight:600;padding:.7rem 1.5rem;border-radius:2px;}
+  .page-hero .btn-primary-cta:hover{background:#dbb877;color:var(--navy);}
+  .page-hero .btn-ghost{border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:500;padding:.68rem 1.4rem;border-radius:2px;}
+  .page-hero .btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff;}
+
+  .stats-grid{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2.6rem 0;}
+  .stats-grid .stat-num{font-family:'Source Serif 4',serif;font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:.15rem;}
+  .stats-grid .stat-label{font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+
+  .tag-pill{display:inline-block;font-size:.85rem;color:var(--navy);background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:.45rem 1.1rem;margin:0 .5rem .6rem 0;}
+
+  .check-list{list-style:none;padding:0;margin:0;}
+  .check-list li{display:flex;gap:.7rem;padding:.55rem 0;color:var(--muted);font-size:.94rem;}
+  .check-list li i{color:var(--accent);margin-top:.15rem;flex:0 0 auto;}
+
+  .mini-pub{border-left:3px solid var(--accent);padding:1rem 1.4rem;margin-bottom:.9rem;background:var(--paper);border-radius:2px;}
+  .mini-pub h6{font-family:'Source Serif 4',serif;font-weight:600;font-size:.98rem;margin-bottom:.3rem;}
+  .mini-pub .pub-meta{color:var(--muted);font-size:.82rem;}
+
+  .award-card{border:1px solid var(--line);border-radius:6px;padding:1.4rem 1.6rem;height:100%;display:flex;gap:1rem;}
+  .award-card .bi{color:var(--accent-2);font-size:1.4rem;}
+  .award-card h6{font-family:'Source Serif 4',serif;font-weight:600;margin-bottom:.2rem;}
+  .award-card p{color:var(--muted);font-size:.86rem;margin-bottom:0;}
+
+  .avail-pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--line);border-radius:100px;padding:.5rem 1.2rem;font-size:.9rem;color:var(--navy);margin:0 .5rem .6rem 0;}
+  .avail-pill i{color:var(--accent);}
+
+  .cta-band{background:linear-gradient(180deg,var(--navy) 0%, var(--navy-2) 100%);color:#fff;padding:4rem 0;text-align:center;}
+  .cta-band h3{font-weight:600;margin-bottom:.5rem;}
+  .cta-band p{color:rgba(255,255,255,.75);margin-bottom:1.6rem;}
+  .cta-band .btn-primary-cta{background:var(--accent-2);border:none;color:var(--navy);font-weight:600;padding:.7rem 1.6rem;border-radius:2px;}
+  .cta-band .btn-primary-cta:hover{background:#dbb877;color:var(--navy);}
 
   .section{padding:4.5rem 0;}
   .section-kicker{text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;font-weight:700;color:var(--accent);margin-bottom:.6rem;}
@@ -110,7 +148,18 @@
   <div class="container">
     <div class="section-kicker">About</div>
     <h1>Mesele Tilahun Belete</h1>
-    <p>Plant virologist and tissue culture specialist with a decade-plus of experience spanning academic research, government quarantine science, and applied crop biotechnology across Ethiopia and South Korea.</p>
+    <div class="role-line">Plant Virologist | Molecular Biologist | Plant Bioinformatics Researcher</div>
+    <p>Advancing plant health through virus discovery, molecular diagnostics, high-throughput sequencing, and computational genomics.</p>
+    <div class="fact-chips">
+      <span class="fact-chip"><i class="bi bi-clock-history"></i>10+ Years Research Experience</span>
+      <span class="fact-chip"><i class="bi bi-journal-text"></i>14 SCI Publications</span>
+      <span class="fact-chip"><i class="bi bi-award"></i>Presidential Excellence Award</span>
+      <span class="fact-chip"><i class="bi bi-building"></i>Postdoctoral Research Associate, APQA</span>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+      <a href="files/CV.pdf" class="btn btn-primary-cta">Download CV</a>
+      <a href="contact.html" class="btn btn-ghost">Contact Me</a>
+    </div>
   </div>
 </header>
 
@@ -132,10 +181,12 @@
         </div>
       </div>
       <div class="col-lg-8">
-        <div class="section-kicker">Summary</div>
-        <h2 class="section-title">Biotechnology, tissue culture &amp; plant virology specialist</h2>
-        <p style="color:var(--muted);">Mesele brings extensive expertise in plant virus&ndash;host interactions, virus-induced gene silencing, molecular cloning, high-containment plant infection assays, RNA sequencing, cDNA library preparation, and viral population bioinformatics. He is first author of more than ten peer-reviewed publications and recipient of the 2024 President&rsquo;s Excellence Award for outstanding Ph.D. research achievement.</p>
-        <p style="color:var(--muted);">He has experience developing plant infectious clones, conducting next-generation sequencing analyses, and designing computational workflows to accelerate plant virology research. His interests include virus discovery, engineering viral vectors for gene and guide RNA delivery into monocot and cereal crops, and viral diagnosis of economically important crops.</p>
+        <div class="section-kicker">Research Expertise</div>
+        <h2 class="section-title">Plant virus genomics, molecular diagnostics &amp; computational virology</h2>
+        <p style="color:var(--muted);">Mesele is a plant virologist specializing in plant virus genomics, molecular diagnostics, and next-generation sequencing. His research combines laboratory experimentation with bioinformatics to identify emerging plant viruses, characterize complete viral genomes, and improve disease surveillance.</p>
+        <p style="color:var(--muted);">His work spans virus discovery, infectious clone development, RNA sequencing, plant&ndash;pathogen interactions, and computational genome analysis. He has contributed to the first complete genomes and first host reports of several economically important plant viruses.</p>
+        <p style="color:var(--muted);">He currently serves as a Postdoctoral Research Associate at the Animal and Plant Quarantine Agency (APQA) in South Korea, where he conducts research supporting national plant biosecurity and quarantine programs.</p>
+        <p style="color:var(--muted);">His long-term research goal is to develop innovative molecular tools for virus detection, virus evolution studies, and RNA-based technologies for sustainable crop protection.</p>
 
         <div class="section-kicker mt-5">Education</div>
         <h2 class="section-title">Academic Background</h2>
@@ -154,6 +205,84 @@
         <div class="lang-row"><span>English</span><span style="color:var(--muted);">Proficient</span></div>
         <div class="lang-row"><span>Korean</span><span style="color:var(--muted);">Intermediate</span></div>
         <div class="lang-row"><span>Amharic</span><span style="color:var(--muted);">Native</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-grid">
+  <div class="container">
+    <div class="row text-center gy-4">
+      <div class="col-6 col-md-3">
+        <div class="stat-num">14+</div>
+        <div class="stat-label">SCI Publications</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">First-Author Papers</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-num">Several</div>
+        <div class="stat-label">Complete Virus Genomes</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Presidential Excellence Award</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Students Mentored</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-num">18+</div>
+        <div class="stat-label">HTS Datasets Analyzed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-kicker">Focus</div>
+    <h2 class="section-title">Research Interests</h2>
+    <div>
+      <span class="tag-pill">Plant virus genomics</span>
+      <span class="tag-pill">Virus evolution</span>
+      <span class="tag-pill">High-throughput sequencing</span>
+      <span class="tag-pill">Bioinformatics</span>
+      <span class="tag-pill">Molecular diagnostics</span>
+      <span class="tag-pill">Infectious clone development</span>
+      <span class="tag-pill">Virus&ndash;host interactions</span>
+      <span class="tag-pill">RNA biology</span>
+      <span class="tag-pill">Plant biosecurity</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);">
+  <div class="container">
+    <div class="section-kicker">Snapshot</div>
+    <h2 class="section-title">Research Highlights</h2>
+    <div class="row">
+      <div class="col-lg-8">
+        <ul class="check-list">
+          <li><i class="bi bi-check-circle-fill"></i>10+ years of plant virology research</li>
+          <li><i class="bi bi-check-circle-fill"></i>14 SCI-indexed publications</li>
+          <li><i class="bi bi-check-circle-fill"></i>President&rsquo;s Excellence Award for outstanding Ph.D. research</li>
+          <li><i class="bi bi-check-circle-fill"></i>Complete genome characterization of multiple plant viruses</li>
+          <li><i class="bi bi-check-circle-fill"></i>Expertise in high-throughput RNA sequencing and viral metagenomics</li>
+          <li><i class="bi bi-check-circle-fill"></i>Experienced in infectious clone construction</li>
+          <li><i class="bi bi-check-circle-fill"></i>Plant quarantine and biosecurity research</li>
+          <li><i class="bi bi-check-circle-fill"></i>International research experience across Ethiopia and South Korea</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -218,6 +347,80 @@
         <p style="color:var(--muted);font-size:.92rem;">Biosafety compliance, equipment handling, inventory control, BSL-3 facility operations.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-kicker">Selected Work</div>
+    <h2 class="section-title">Selected Publications</h2>
+    <div class="mini-pub">
+      <h6>First report of citrus leaf blotch virus infecting Broussonetia papyrifera (paper mulberry) in South Korea</h6>
+      <div class="pub-meta"><em>VirusDisease</em>, 2026</div>
+    </div>
+    <div class="mini-pub">
+      <h6>Report of longan witches&rsquo;-broom-associated virus in lychee imported from China</h6>
+      <div class="pub-meta"><em>Microbiology Resource Announcements</em>, 2025</div>
+    </div>
+    <a href="publications.html" class="btn btn-primary-cta mt-2" style="background:var(--navy);color:#fff;">View All 14 Publications</a>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);">
+  <div class="container">
+    <div class="section-kicker">Recognition</div>
+    <h2 class="section-title">Awards &amp; Honors</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="award-card">
+          <i class="bi bi-award"></i>
+          <div>
+            <h6>President&rsquo;s Excellence Award</h6>
+            <p>KRIBB &amp; UST, Daejeon &middot; for outstanding Ph.D. research achievement &middot; Nov 2023</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="award-card">
+          <i class="bi bi-mortarboard"></i>
+          <div>
+            <h6>UST Integrated M.Sc.&ndash;Ph.D. Scholarship</h6>
+            <p>University of Science and Technology &middot; Nov 2019</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="award-card">
+          <i class="bi bi-flower1"></i>
+          <div>
+            <h6>Recognition Award, In-Vitro Micropropagation of Rosa damascena</h6>
+            <p>University of Gondar, Ethiopia &middot; Nov 2011</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-kicker">Open To</div>
+    <h2 class="section-title">Available For</h2>
+    <div>
+      <span class="avail-pill"><i class="bi bi-check2"></i>Postdoctoral research</span>
+      <span class="avail-pill"><i class="bi bi-check2"></i>Research scientist positions</span>
+      <span class="avail-pill"><i class="bi bi-check2"></i>International collaborations</span>
+      <span class="avail-pill"><i class="bi bi-check2"></i>Grant partnerships</span>
+      <span class="avail-pill"><i class="bi bi-check2"></i>Scientific consulting</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h3>Let&rsquo;s work together</h3>
+    <p>Open to postdoctoral positions, research collaborations, and opportunities in plant virology and molecular diagnostics.</p>
+    <a href="contact.html" class="btn btn-primary-cta">Get in Touch</a>
   </div>
 </section>
 
