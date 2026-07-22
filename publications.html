@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications | Mesele Tilahun Belete</title>
+<meta name="description" content="Full publication list of Mesele Tilahun Belete — plant virology, virus discovery, and diagnostics research.">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy:#0b1b2b;
+    --navy-2:#122a42;
+    --accent:#1f7a8c;
+    --accent-2:#c9a35b;
+    --sky:#4fa9e0;
+    --ink:#101820;
+    --muted:#5b6b7a;
+    --paper:#f7f8fa;
+    --line:#e4e8ec;
+    --nav-bg:#c7d3de;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:#fff;}
+  h1,h2,h3,.display-font{font-family:'Source Serif 4',Georgia,serif;}
+  a{text-decoration:none;}
+
+  /* Navbar (light, matches site) */
+  .navbar{background:var(--nav-bg);padding:1rem 0;box-shadow:0 1px 0 rgba(0,0,0,.05);}
+  .navbar .navbar-brand{font-family:'Source Serif 4',serif;font-weight:700;color:var(--navy) !important;}
+  .navbar .nav-link{color:var(--navy) !important;font-size:.95rem;font-weight:500;margin:0 .5rem;position:relative;}
+  .navbar .nav-link.active{color:var(--sky) !important;}
+  .navbar .nav-link.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--sky);}
+  .navbar .dropdown-menu{border:1px solid var(--line);}
+  .navbar .dropdown-item{font-size:.9rem;}
+  .navbar .btn-outline-contact{border:1px solid rgba(11,27,43,.3);color:var(--navy);font-size:.85rem;padding:.4rem 1rem;border-radius:2px;}
+  .navbar .btn-outline-contact:hover{background:var(--navy);color:#fff;}
+  .theme-toggle{
+    width:38px;height:38px;border-radius:50%;border:1px solid rgba(11,27,43,.25);
+    display:flex;align-items:center;justify-content:center;color:var(--navy);background:transparent;
+    margin-left:.75rem;flex:0 0 auto;
+  }
+  .theme-toggle:hover{background:rgba(11,27,43,.08);}
+
+  /* Page hero */
+  .page-hero{
+    background:radial-gradient(1100px 500px at 85% -10%, rgba(31,122,140,.35), transparent 60%),
+      linear-gradient(180deg,var(--navy) 0%, var(--navy-2) 100%);
+    color:#fff;padding:5rem 0 3.5rem;text-align:center;
+  }
+  .page-hero .section-kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;font-weight:700;color:var(--sky);margin-bottom:1rem;}
+  .page-hero h1{font-size:clamp(2.1rem,4.6vw,3rem);font-weight:700;margin-bottom:.9rem;}
+  .page-hero p{color:rgba(255,255,255,.75);max-width:600px;margin:0 auto;font-size:1.02rem;line-height:1.7;}
+
+  .section{padding:4.5rem 0;}
+  .year-heading{
+    font-family:'Source Serif 4',serif;font-weight:700;color:var(--navy);font-size:1.3rem;
+    margin:2.5rem 0 1.2rem;padding-bottom:.5rem;border-bottom:2px solid var(--line);
+  }
+  .year-heading:first-of-type{margin-top:0;}
+
+  .pub-card{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:2px;padding:1.5rem 1.7rem;margin-bottom:1rem;background:#fff;}
+  .pub-card.first-author{border-left-color:var(--accent-2);}
+  .pub-tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700;}
+  .pub-card.first-author .pub-tag{color:#a9822f;}
+  .pub-card h4{font-family:'Source Serif 4',serif;font-size:1.08rem;font-weight:600;margin:.4rem 0 .5rem;line-height:1.4;}
+  .pub-card .pub-meta{color:var(--muted);font-size:.87rem;}
+  .pub-card .pub-authors{color:var(--muted);font-size:.85rem;margin-top:.2rem;}
+
+  .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.85rem;color:var(--muted);}
+  .legend span{display:inline-flex;align-items:center;gap:.4rem;}
+  .legend .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .legend .dot.first{background:var(--accent-2);}
+  .legend .dot.co{background:var(--accent);}
+
+  footer{background:#0a1622;color:rgba(255,255,255,.65);padding:3rem 0 1.5rem;font-size:.9rem;}
+  footer h6{color:#fff;font-family:'Source Serif 4',serif;font-weight:600;margin-bottom:1rem;}
+  footer a{color:rgba(255,255,255,.65);}
+  footer a:hover{color:var(--accent-2);}
+  footer .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:2rem;padding-top:1.2rem;font-size:.8rem;color:rgba(255,255,255,.45);text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Mesele Tilahun Belete</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+        <li class="nav-item"><a class="nav-link active" href="publications.html">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">More</a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="patents.html">Patents</a></li>
+            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+            <li><a class="dropdown-item" href="news.html">News</a></li>
+            <li><a class="dropdown-item" href="awards.html">Awards</a></li>
+            <li><a class="dropdown-item" href="teaching.html">Teaching</a></li>
+            <li><a class="dropdown-item" href="cv.html">Full CV</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item">
+          <button class="theme-toggle" id="themeToggle" title="Toggle theme" type="button">
+            <i class="bi bi-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="page-hero">
+  <div class="container">
+    <div class="section-kicker">Publications</div>
+    <h1>Peer-Reviewed Research</h1>
+    <p>14 peer-reviewed publications on plant virus discovery, characterization, and diagnostics &mdash; 12 as first author &mdash; in journals including Archives of Virology, Virology Journal, Journal of Plant Pathology, Plant Disease, Microbiology Resource Announcements, and VirusDisease.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="legend">
+      <span><span class="dot first"></span>First author</span>
+      <span><span class="dot co"></span>Co-author</span>
+    </div>
+
+    <div class="year-heading">2026</div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>First report of citrus leaf blotch virus infecting Broussonetia papyrifera (paper mulberry) in South Korea</h4>
+      <div class="pub-meta"><em>VirusDisease</em>, 2026</div>
+      <div class="pub-authors">Belete, M.T., Lee, S.J. &amp; Lim, S.</div>
+    </div>
+
+    <div class="year-heading">2025</div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>Towards the adoption of genetically modified crops in Africa: navigating public perceptions and biosafety regulations</h4>
+      <div class="pub-meta">Korean Biosafety Clearing House (KBCH-biopanel), 2025</div>
+      <div class="pub-authors">Belete, M.T.</div>
+    </div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>Report of longan witches&rsquo;-broom-associated virus in lychee imported from China</h4>
+      <div class="pub-meta"><em>Microbiology Resource Announcements</em>, 14(8), e00411-25, 2025</div>
+      <div class="pub-authors">Belete, M.T., Park, E., Kim, Y., Yun, S., Lee, J.H., Lee, D.S., et al.</div>
+    </div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>First report of pecan mosaic-associated virus in Atractylodes lancea in South Korea</h4>
+      <div class="pub-meta"><em>Journal of Plant Pathology</em>, 107(1), 771&ndash;772, 2025</div>
+      <div class="pub-authors">Belete, M.T., Igori, D., Kim, S.E., Kwon, J.A., Lee, S.H. &amp; Moon, J.S.</div>
+    </div>
+
+    <div class="year-heading">2024</div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>First report of cucumber green mottle mosaic virus infecting grapevine in South Korea</h4>
+      <div class="pub-meta"><em>Journal of Plant Pathology</em>, 106(3), 1415&ndash;1416, 2024</div>
+      <div class="pub-authors">Belete, M.T., Kim, S.E., Igori, D., Kwon, J.A., Kim, Y.H., Yang, H.J. &amp; Moon, J.S.</div>
+    </div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>Molecular characterization and identification of Stellaria aquatica virus C, a novel putative member of the genus Closterovirus infecting Stellaria aquatica in South Korea</h4>
+      <div class="pub-meta"><em>Archives of Virology</em>, 169(7), 153, 2024</div>
+      <div class="pub-authors">Belete, M.T., Kim, D.Y., Kim, S.H. &amp; Sun, M.J.</div>
+    </div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>Deciphering the virome of Chunkung (Cnidium officinale) showing dwarfism-like symptoms via a high-throughput sequencing analysis</h4>
+      <div class="pub-meta"><em>Virology Journal</em>, 21(1), 86, 2024</div>
+      <div class="pub-authors">Belete, M.T., Kim, S.E., Gudeta, W.F., Igori, D., Kwon, J.A., Lee, S.H. &amp; Moon, J.S.</div>
+    </div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>First report of strawberry Polerovirus 1 in strawberry in South Korea</h4>
+      <div class="pub-meta"><em>Plant Disease</em>, 108(3), 826, 2024</div>
+      <div class="pub-authors">Belete, M.T., Kim, S.E., Kwon, J.A., Kim, R.H., Kim, Y.H., Yang, H.J., et al.</div>
+    </div>
+
+    <div class="year-heading">2023</div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>Complete genome sequence of daphne virus 1, a novel cytorhabdovirus infecting Daphne odora</h4>
+      <div class="pub-meta"><em>Archives of Virology</em>, 168(5), 141, 2023</div>
+      <div class="pub-authors">Belete, M.T., Kim, S.E., Igori, D., Ahn, J.K., Seo, H.K., Park, Y.C. &amp; Moon, J.S.</div>
+    </div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>Molecular characterization of a novel umbra-like virus from Thuja orientalis (arborvitae) in South Korea</h4>
+      <div class="pub-meta"><em>Archives of Virology</em>, 168(7), 197, 2023</div>
+      <div class="pub-authors">Belete, M.T., Kim, S.E., Kwon, J.A., Igori, D., Choi, E.K., Hwang, U.S., et al.</div>
+    </div>
+
+    <div class="year-heading">2022</div>
+
+    <div class="pub-card">
+      <div class="pub-tag">Co-Author</div>
+      <h4>Complete genome sequence of pueraria virus A, a new member of the genus Caulimovirus</h4>
+      <div class="pub-meta"><em>Archives of Virology</em>, 167(6), 1481&ndash;1485, 2022</div>
+      <div class="pub-authors">Gudeta, W.F., Igori, D., Belete, M.T., Kim, S.E. &amp; Moon, J.S.</div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-tag">Co-Author</div>
+      <h4>Complete genome sequence of cnidium closterovirus 1, a novel member of the genus Closterovirus infecting Cnidium officinale</h4>
+      <div class="pub-meta"><em>Archives of Virology</em>, 167(6), 1491&ndash;1494, 2022</div>
+      <div class="pub-authors">Gudeta, W.F., Belete, M.T., Igori, D., Kim, S.E. &amp; Moon, J.S.</div>
+    </div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>Complete genome sequence of cnidium virus 1, a novel betanucleorhabdovirus infecting Cnidium officinale</h4>
+      <div class="pub-meta"><em>Archives of Virology</em>, 167(3), 973&ndash;977, 2022</div>
+      <div class="pub-authors">Belete, M.T., Igori, D., Kim, S.E., Lee, S.H. &amp; Moon, J.S.</div>
+    </div>
+
+    <div class="year-heading">2021</div>
+
+    <div class="pub-card first-author">
+      <div class="pub-tag">First Author</div>
+      <h4>Complete genome sequence of Codonopsis torradovirus A, a novel torradovirus infecting Codonopsis lanceolata in South Korea</h4>
+      <div class="pub-meta"><em>Archives of Virology</em>, 166(12), 3473&ndash;3476, 2021</div>
+      <div class="pub-authors">Belete, M.T., Gudeta, W.F., Kim, S.E., Igori, D. &amp; Moon, J.S.</div>
+    </div>
+
+    <a href="files/CV.pdf" class="btn mt-3" style="border:1px solid var(--navy);color:var(--navy);border-radius:2px;padding:.68rem 1.4rem;">Download Full CV</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <h6>Mesele Tilahun Belete</h6>
+        <p>Postdoctoral Research Associate researching plant virus discovery, virus&ndash;host interactions, and HTS-based virome diagnostics at APQA / KRIBB.</p>
+      </div>
+      <div class="col-lg-4">
+        <h6>Quick Links</h6>
+        <div class="d-flex flex-column gap-2">
+          <a href="about.html">About</a>
+          <a href="research.html">Research</a>
+          <a href="publications.html">Publications</a>
+          <a href="projects.html">Projects</a>
+          <a href="news.html">News</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h6>Contact</h6>
+        <p class="mb-1"><a href="mailto:mesele1621@gmail.com">mesele1621@gmail.com</a></p>
+        <p class="mb-1">+82-10-4202-1889</p>
+        <p class="mb-1">Gimcheon, Republic of Korea</p>
+      </div>
+    </div>
+    <div class="foot-bottom">&copy; <span id="year"></span> Mesele Tilahun Belete. Built with Bootstrap 5 &middot; Hosted on GitHub Pages.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const toggle = document.getElementById('themeToggle');
+  const icon = toggle.querySelector('i');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    icon.className = document.body.classList.contains('dark-mode') ? 'bi bi-sun' : 'bi bi-moon';
+  });
+</script>
+</body>
+</html>

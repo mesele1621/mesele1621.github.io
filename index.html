@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mesele Tilahun Belete | Plant Virologist & Biotechnology Researcher</title>
+<meta name="description" content="Mesele Tilahun Belete — Postdoctoral Research Associate at APQA, specializing in plant virus discovery, virus-induced gene silencing, and high-throughput sequencing-based virome diagnostics.">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy:#0b1b2b;
+    --navy-2:#122a42;
+    --accent:#1f7a8c;
+    --accent-2:#c9a35b;
+    --sky:#4fa9e0;
+    --ink:#101820;
+    --muted:#5b6b7a;
+    --paper:#f7f8fa;
+    --line:#e4e8ec;
+    --nav-bg:#c7d3de;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:#fff;}
+  h1,h2,h3,.display-font{font-family:'Source Serif 4',Georgia,serif;}
+  a{text-decoration:none;}
+  section[id]{scroll-margin-top:90px;}
+
+  /* Navbar (light, matches contact page) */
+  .navbar{background:var(--nav-bg);padding:1rem 0;box-shadow:0 1px 0 rgba(0,0,0,.05);}
+  .navbar .navbar-brand{font-family:'Source Serif 4',serif;font-weight:700;color:var(--navy) !important;}
+  .navbar .nav-link{color:var(--navy) !important;font-size:.95rem;font-weight:500;margin:0 .5rem;position:relative;}
+  .navbar .nav-link.active{color:var(--sky) !important;}
+  .navbar .nav-link.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--sky);}
+  .navbar .dropdown-menu{border:1px solid var(--line);}
+  .navbar .dropdown-item{font-size:.9rem;}
+  .navbar .btn-outline-contact{border:1px solid rgba(11,27,43,.3);color:var(--navy);font-size:.85rem;padding:.4rem 1rem;border-radius:2px;}
+  .navbar .btn-outline-contact:hover{background:var(--navy);color:#fff;}
+  .theme-toggle{
+    width:38px;height:38px;border-radius:50%;border:1px solid rgba(11,27,43,.25);
+    display:flex;align-items:center;justify-content:center;color:var(--navy);background:transparent;
+    margin-left:.75rem;flex:0 0 auto;
+  }
+  .theme-toggle:hover{background:rgba(11,27,43,.08);}
+
+  /* Hero */
+  .hero{
+    background:radial-gradient(1100px 500px at 85% -10%, rgba(31,122,140,.35), transparent 60%),
+      linear-gradient(180deg,var(--navy) 0%, var(--navy-2) 100%);
+    color:#fff;padding:5rem 0 4rem;
+  }
+  .eyebrow{
+    display:inline-block;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:600;
+    color:var(--accent-2);border:1px solid rgba(201,163,91,.4);padding:.35rem .9rem;border-radius:100px;margin-bottom:1.5rem;
+  }
+  .hero h1{font-size:clamp(2.3rem,5vw,3.6rem);font-weight:600;line-height:1.1;margin-bottom:0;}
+  .hero .subtitle-line{font-size:1.05rem;color:rgba(255,255,255,.7);font-weight:500;margin-top:1rem;}
+  .hero .typing-line{
+    font-size:1.2rem;color:var(--accent-2);font-weight:600;margin-bottom:1.3rem;
+  }
+  .hero .typing-line .cursor{
+    display:inline-block;width:2px;background:var(--accent-2);margin-left:2px;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  .hero p.lede{color:rgba(255,255,255,.78);font-size:1.05rem;max-width:560px;line-height:1.7;}
+  .hero .btn-primary-cta{background:var(--accent-2);border:none;color:var(--navy);font-weight:600;padding:.7rem 1.5rem;border-radius:2px;}
+  .hero .btn-primary-cta:hover{background:#dbb877;color:var(--navy);}
+  .hero .btn-ghost{border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:500;padding:.68rem 1.4rem;border-radius:2px;}
+  .hero .btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff;}
+  .hero .socials a{
+    display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
+    border:1px solid rgba(255,255,255,.25);border-radius:50%;color:#fff;margin-right:.5rem;font-size:1rem;
+  }
+  .hero .socials a:hover{background:var(--accent-2);border-color:var(--accent-2);color:var(--navy);}
+  .hero .portrait-wrap{position:relative;width:100%;max-width:320px;margin-left:auto;}
+  .hero .portrait-wrap img{
+    width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:6px;
+    border:6px solid rgba(255,255,255,.08);box-shadow:0 30px 60px rgba(0,0,0,.35);
+  }
+  .scroll-cue{text-align:center;color:rgba(255,255,255,.55);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-top:3.5rem;}
+
+  /* Stats */
+  .stats-strip{background:var(--paper);border-bottom:1px solid var(--line);padding:2.6rem 0;}
+  .stat-num{font-family:'Source Serif 4',serif;font-size:2.1rem;font-weight:700;color:var(--navy);margin-bottom:.15rem;}
+  .stat-label{font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+
+  .section{padding:5.5rem 0;}
+  .section-kicker{text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;font-weight:700;color:var(--accent);margin-bottom:.6rem;}
+  .section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;color:var(--navy);margin-bottom:1.2rem;}
+
+  /* About cards */
+  .topic-card{border:1px solid var(--line);border-radius:4px;padding:1.6rem;height:100%;transition:.2s ease;}
+  .topic-card:hover{border-color:var(--accent);box-shadow:0 12px 30px rgba(15,40,60,.08);transform:translateY(-3px);}
+  .topic-card h5{font-family:'Source Serif 4',serif;font-weight:600;font-size:1.05rem;}
+  .topic-card p{color:var(--muted);font-size:.92rem;margin-bottom:0;}
+
+  /* Publications */
+  .pub-card{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:2px;padding:1.6rem 1.8rem;margin-bottom:1.1rem;}
+  .pub-tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700;}
+  .pub-card h4{font-family:'Source Serif 4',serif;font-size:1.15rem;font-weight:600;margin:.4rem 0 .5rem;}
+  .pub-card .pub-meta{color:var(--muted);font-size:.88rem;}
+
+  /* News */
+  .news-item{display:flex;gap:1.4rem;padding:1.4rem 0;border-bottom:1px solid var(--line);}
+  .news-date{min-width:120px;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);font-weight:700;padding-top:.15rem;}
+  .news-item h5{font-family:'Source Serif 4',serif;font-size:1.02rem;font-weight:600;margin-bottom:.3rem;}
+  .news-item p{color:var(--muted);font-size:.9rem;margin-bottom:0;}
+
+  /* CTA */
+  .cta-band{background:linear-gradient(180deg,var(--navy) 0%, var(--navy-2) 100%);color:#fff;padding:4rem 0;text-align:center;}
+  .cta-band h3{font-weight:600;margin-bottom:.5rem;}
+  .cta-band p{color:rgba(255,255,255,.75);margin-bottom:1.6rem;}
+
+  /* Footer */
+  footer{background:#0a1622;color:rgba(255,255,255,.65);padding:3.5rem 0 1.5rem;font-size:.9rem;}
+  footer h6{color:#fff;font-family:'Source Serif 4',serif;font-weight:600;margin-bottom:1rem;}
+  footer a{color:rgba(255,255,255,.65);}
+  footer a:hover{color:var(--accent-2);}
+  footer .footer-socials a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:50%;margin-right:.5rem;}
+  footer .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:2.5rem;padding-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,.45);}
+</style>
+</head>
+<body>
+
+<!-- Navbar: Home / About / Research / Publications / Projects / More (dropdown) / Contact -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#top">Mesele Tilahun Belete</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link active" href="#top">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+        <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">More</a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="patents.html">Patents</a></li>
+            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+            <li><a class="dropdown-item" href="news.html">News</a></li>
+            <li><a class="dropdown-item" href="awards.html">Awards</a></li>
+            <li><a class="dropdown-item" href="teaching.html">Teaching</a></li>
+            <li><a class="dropdown-item" href="cv.html">Full CV</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item">
+          <button class="theme-toggle" id="themeToggle" title="Toggle theme" type="button">
+            <i class="bi bi-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7">
+        <span class="eyebrow">Postdoctoral Research Associate &middot; APQA / KRIBB</span>
+        <h1>Mesele Tilahun<br>Belete</h1>
+        <div class="subtitle-line">Plant Virology &amp; Biotechnology</div>
+        <div class="typing-line">Researcher in Virus Discovery &amp; Diagnostics<span class="cursor">&nbsp;</span></div>
+        <p class="lede">Investigating plant virus&ndash;host interactions, engineering viral vectors for gene silencing, and applying high-throughput sequencing to discover and diagnose emerging viruses in economically important crops.</p>
+        <div class="d-flex flex-wrap gap-2 mt-4 mb-4">
+          <a href="files/CV.pdf" class="btn btn-primary-cta">Download CV</a>
+          <a href="research.html" class="btn btn-ghost">Research</a>
+          <a href="publications.html" class="btn btn-ghost">Publications</a>
+          <a href="contact.html" class="btn btn-ghost">Contact</a>
+        </div>
+        <div class="socials">
+          <a href="mailto:mesele1621@gmail.com" title="Email"><i class="bi bi-envelope"></i></a>
+          <a href="tel:+821042021889" title="Phone"><i class="bi bi-telephone"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="portrait-wrap">
+          <img src="images/profile.jpg" alt="Portrait of Mesele Tilahun Belete">
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue">Scroll &darr;</div>
+  </div>
+</header>
+
+<!-- Stats -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="row text-center gy-4">
+      <div class="col-6 col-md-2">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">First-Author SCI Papers</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="stat-num">14+</div>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Patents</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="stat-num">14+</div>
+        <div class="stat-label">Research Projects</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Awards</div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="stat-num">13</div>
+        <div class="stat-label">Years Research</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-kicker">About</div>
+    <h2 class="section-title">Plant virus discovery, host interactions &amp; molecular diagnostics</h2>
+    <p style="color:var(--muted);max-width:680px;">Mesele is a Postdoctoral Research Associate at the Animal and Plant Quarantine Agency (APQA), South Korea, following a combined M.Sc.&ndash;Ph.D. in Biotechnology at UST, completed in collaboration with KRIBB &mdash; designing viral vectors for gene and guide RNA delivery and applying high-throughput sequencing to discover and characterize novel plant viruses.</p>
+    <a href="about.html" class="btn btn-primary-cta mt-2">More About Me</a>
+
+    <div class="row g-4 mt-3">
+      <div class="col-md-6 col-lg-3">
+        <div class="topic-card">
+          <h5>Plant Virus&ndash;Host Interactions</h5>
+          <p>Characterizing novel viruses and their interactions across crop and horticultural hosts.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="topic-card">
+          <h5>Virus-Induced Gene Silencing</h5>
+          <p>Engineering viral vectors for gene and guide RNA delivery into monocot and cereal crops.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="topic-card">
+          <h5>HTS &amp; Virome Bioinformatics</h5>
+          <p>RNA-seq, genome assembly, BLAST, and phylogenetic analysis for virus discovery.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="topic-card">
+          <h5>Tissue Culture &amp; Diagnostics</h5>
+          <p>Meristem culture, in-vitro micropropagation, and PCR/ELISA-based viral diagnostics.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Selected Publications -->
+<section class="section" style="background:var(--paper);" id="publications">
+  <div class="section-kicker container">Featured Research</div>
+  <h2 class="section-title container">Selected Publications</h2>
+  <div class="container">
+    <div class="pub-card">
+      <div class="pub-tag">Featured Journal Article</div>
+      <h4>First report of citrus leaf blotch virus infecting Broussonetia papyrifera (paper mulberry) in South Korea</h4>
+      <div class="pub-meta"><em>VirusDisease</em>, 2026</div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-tag">Featured Journal Article</div>
+      <h4>Report of longan witches&rsquo;-broom-associated virus in lychee imported from China</h4>
+      <div class="pub-meta"><em>Microbiology Resource Announcements</em>, 2025</div>
+    </div>
+    <a href="publications.html" class="btn btn-ghost" style="border-color:var(--navy);color:var(--navy);">View All Publications</a>
+  </div>
+</section>
+
+<!-- Recent Highlights -->
+<section class="section" id="news">
+  <div class="container">
+    <div class="section-kicker">Latest Updates</div>
+    <h2 class="section-title">Recent Highlights</h2>
+
+    <div class="news-item">
+      <div class="news-date">June 2026</div>
+      <div>
+        <h5>Published in VirusDisease</h5>
+        <p>First report of citrus leaf blotch virus infecting paper mulberry (Broussonetia papyrifera) in South Korea.</p>
+      </div>
+    </div>
+    <div class="news-item">
+      <div class="news-date">January 2025</div>
+      <div>
+        <h5>Biopanel presentation at KBCH</h5>
+        <p>Presented on navigating public perception and biosafety regulation in the adoption of GM crops in Africa.</p>
+      </div>
+    </div>
+    <div class="news-item">
+      <div class="news-date">2025</div>
+      <div>
+        <h5>Published in Microbiology Resource Announcements</h5>
+        <p>Report of longan witches&rsquo;-broom-associated virus detected in lychee imported from China.</p>
+      </div>
+    </div>
+    <div class="news-item">
+      <div class="news-date">September 2024</div>
+      <div>
+        <h5>Joined APQA as Postdoctoral Research Associate</h5>
+        <p>Began current role optimizing HTS/virome bioinformatics workflows and leading BSL-3 plant infection studies.</p>
+      </div>
+    </div>
+
+    <a href="news.html" class="btn btn-ghost mt-4" style="border-color:var(--navy);color:var(--navy);">View All News</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <h3>Open to research collaborations &amp; postdoctoral opportunities</h3>
+    <p>Available for academic positions, industry diagnostics R&amp;D roles, and international research collaborations.</p>
+    <a href="contact.html" class="btn btn-primary-cta">Get in Touch</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <h6>Mesele Tilahun Belete</h6>
+        <p>Postdoctoral Research Associate researching plant virus discovery, virus&ndash;host interactions, and HTS-based virome diagnostics at APQA / KRIBB.</p>
+        <div class="footer-socials mt-3">
+          <a href="mailto:mesele1621@gmail.com"><i class="bi bi-envelope"></i></a>
+          <a href="tel:+821042021889"><i class="bi bi-telephone"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h6>Quick Links</h6>
+        <div class="d-flex flex-column gap-2">
+          <a href="about.html">About</a>
+          <a href="research.html">Research</a>
+          <a href="publications.html">Publications</a>
+          <a href="patents.html">Patents</a>
+          <a href="projects.html">Projects</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="news.html">News</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h6>Contact</h6>
+        <p class="mb-1"><a href="mailto:mesele1621@gmail.com">mesele1621@gmail.com</a></p>
+        <p class="mb-1">+82-10-4202-1889</p>
+        <p class="mb-1">Gimcheon, Republic of Korea</p>
+      </div>
+    </div>
+    <div class="foot-bottom text-center">
+      &copy; <span id="year"></span> Mesele Tilahun Belete. Built with Bootstrap 5 &middot; Hosted on GitHub Pages.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // simple light/dark toggle (visual only, matches the moon icon in the nav)
+  const toggle = document.getElementById('themeToggle');
+  const icon = toggle.querySelector('i');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    icon.className = isDark ? 'bi bi-sun' : 'bi bi-moon';
+  });
+</script>
+</body>
+</html>

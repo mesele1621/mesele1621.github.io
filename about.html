@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Mesele Tilahun Belete</title>
+<meta name="description" content="About Mesele Tilahun Belete — Postdoctoral Research Associate specializing in plant virology, biotechnology, and tissue culture.">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy:#0b1b2b;--navy-2:#122a42;--accent:#1f7a8c;--accent-2:#c9a35b;--sky:#4fa9e0;
+    --ink:#101820;--muted:#5b6b7a;--paper:#f7f8fa;--line:#e4e8ec;--nav-bg:#c7d3de;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:#fff;}
+  h1,h2,h3,.display-font{font-family:'Source Serif 4',Georgia,serif;}
+  a{text-decoration:none;}
+
+  .navbar{background:var(--nav-bg);padding:1rem 0;box-shadow:0 1px 0 rgba(0,0,0,.05);}
+  .navbar .navbar-brand{font-family:'Source Serif 4',serif;font-weight:700;color:var(--navy) !important;}
+  .navbar .nav-link{color:var(--navy) !important;font-size:.95rem;font-weight:500;margin:0 .5rem;position:relative;}
+  .navbar .nav-link.active{color:var(--sky) !important;}
+  .navbar .nav-link.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--sky);}
+  .navbar .dropdown-menu{border:1px solid var(--line);}
+  .navbar .dropdown-item{font-size:.9rem;}
+  .theme-toggle{width:38px;height:38px;border-radius:50%;border:1px solid rgba(11,27,43,.25);display:flex;align-items:center;justify-content:center;color:var(--navy);background:transparent;margin-left:.75rem;flex:0 0 auto;}
+  .theme-toggle:hover{background:rgba(11,27,43,.08);}
+
+  .page-hero{
+    background:radial-gradient(1100px 500px at 85% -10%, rgba(31,122,140,.35), transparent 60%),
+      linear-gradient(180deg,var(--navy) 0%, var(--navy-2) 100%);
+    color:#fff;padding:5rem 0 3.5rem;text-align:center;
+  }
+  .page-hero .section-kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;font-weight:700;color:var(--sky);margin-bottom:1rem;}
+  .page-hero h1{font-size:clamp(2.1rem,4.6vw,3rem);font-weight:700;margin-bottom:.9rem;}
+  .page-hero p{color:rgba(255,255,255,.75);max-width:640px;margin:0 auto;font-size:1.02rem;line-height:1.7;}
+
+  .section{padding:4.5rem 0;}
+  .section-kicker{text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;font-weight:700;color:var(--accent);margin-bottom:.6rem;}
+  .section-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:600;color:var(--navy);margin-bottom:1.2rem;}
+
+  .portrait-box{width:100%;max-width:280px;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:1px solid var(--line);box-shadow:0 15px 40px rgba(15,40,60,.1);}
+
+  .edu-card{border:1px solid var(--line);border-radius:6px;padding:1.5rem 1.7rem;margin-bottom:1rem;}
+  .edu-card .edu-date{font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);font-weight:700;}
+  .edu-card h5{font-family:'Source Serif 4',serif;font-weight:600;margin:.3rem 0 .15rem;}
+  .edu-card .edu-org{color:var(--muted);font-size:.9rem;}
+
+  .tl-item{position:relative;padding-left:1.8rem;padding-bottom:2rem;border-left:2px solid var(--line);margin-left:.3rem;}
+  .tl-item:last-child{border-color:transparent;padding-bottom:0;}
+  .tl-item::before{content:"";position:absolute;left:-7px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 0 0 2px var(--accent);}
+  .tl-date{font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);font-weight:700;}
+  .tl-item h5{font-family:'Source Serif 4',serif;font-weight:600;margin:.3rem 0 .15rem;}
+  .tl-item .tl-org{color:var(--muted);font-size:.88rem;margin-bottom:.5rem;}
+  .tl-item p{color:var(--muted);font-size:.92rem;margin-bottom:0;}
+
+  .skill-pill{display:inline-block;border:1px solid var(--line);border-radius:100px;padding:.4rem 1rem;font-size:.85rem;color:var(--navy);margin:0 .4rem .5rem 0;background:var(--paper);}
+  .lang-row{display:flex;justify-content:space-between;max-width:340px;padding:.5rem 0;border-bottom:1px solid var(--line);font-size:.92rem;}
+
+  footer{background:#0a1622;color:rgba(255,255,255,.65);padding:3rem 0 1.5rem;font-size:.9rem;}
+  footer h6{color:#fff;font-family:'Source Serif 4',serif;font-weight:600;margin-bottom:1rem;}
+  footer a{color:rgba(255,255,255,.65);}
+  footer a:hover{color:var(--accent-2);}
+  footer .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:2rem;padding-top:1.2rem;font-size:.8rem;color:rgba(255,255,255,.45);text-align:center;}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Mesele Tilahun Belete</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+        <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">More</a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="patents.html">Patents</a></li>
+            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+            <li><a class="dropdown-item" href="news.html">News</a></li>
+            <li><a class="dropdown-item" href="awards.html">Awards</a></li>
+            <li><a class="dropdown-item" href="teaching.html">Teaching</a></li>
+            <li><a class="dropdown-item" href="cv.html">Full CV</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item">
+          <button class="theme-toggle" id="themeToggle" title="Toggle theme" type="button"><i class="bi bi-moon"></i></button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <div class="section-kicker">About</div>
+    <h1>Mesele Tilahun Belete</h1>
+    <p>Plant virologist and tissue culture specialist with a decade-plus of experience spanning academic research, government quarantine science, and applied crop biotechnology across Ethiopia and South Korea.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-4 text-center text-lg-start">
+        <img src="images/profile.jpg" alt="Portrait of Mesele Tilahun Belete" class="portrait-box mb-4">
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start">
+          <span class="skill-pill"><i class="bi bi-geo-alt me-1"></i>Gimcheon, South Korea</span>
+          <span class="skill-pill"><i class="bi bi-envelope me-1"></i>mesele1621@gmail.com</span>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="section-kicker">Summary</div>
+        <h2 class="section-title">Biotechnology, tissue culture &amp; plant virology specialist</h2>
+        <p style="color:var(--muted);">Mesele brings extensive expertise in plant virus&ndash;host interactions, virus-induced gene silencing, molecular cloning, high-containment plant infection assays, RNA sequencing, cDNA library preparation, and viral population bioinformatics. He is first author of more than ten peer-reviewed publications and recipient of the 2024 President&rsquo;s Excellence Award for outstanding Ph.D. research achievement.</p>
+        <p style="color:var(--muted);">He has experience developing plant infectious clones, conducting next-generation sequencing analyses, and designing computational workflows to accelerate plant virology research. His interests include virus discovery, engineering viral vectors for gene and guide RNA delivery into monocot and cereal crops, and viral diagnosis of economically important crops.</p>
+
+        <div class="section-kicker mt-5">Education</div>
+        <h2 class="section-title">Academic Background</h2>
+        <div class="edu-card">
+          <div class="edu-date">01/2020 &ndash; 08/2024</div>
+          <h5>Combined M.Sc.&ndash;Ph.D. in Biotechnology</h5>
+          <div class="edu-org">University of Science and Technology (UST), Daejeon, South Korea</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-date">09/2009 &ndash; 07/2012</div>
+          <h5>Bachelor of Biotechnology</h5>
+          <div class="edu-org">University of Gondar, Gondar, Ethiopia</div>
+        </div>
+
+        <div class="section-kicker mt-5">Languages</div>
+        <div class="lang-row"><span>English</span><span style="color:var(--muted);">Proficient</span></div>
+        <div class="lang-row"><span>Korean</span><span style="color:var(--muted);">Intermediate</span></div>
+        <div class="lang-row"><span>Amharic</span><span style="color:var(--muted);">Native</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);">
+  <div class="container">
+    <div class="section-kicker">Career</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="tl-item">
+          <div class="tl-date">09/2024 &ndash; Present</div>
+          <h5>Postdoctoral Research Associate</h5>
+          <div class="tl-org">Animal and Plant Quarantine Agency (APQA) &middot; Gimcheon, South Korea</div>
+          <p>Optimizes HTS, RNA-seq, and virome bioinformatics workflows; develops infectious clone systems and molecular diagnostics for resistance screening; runs BSL-3 plant infection experiments and 3,000+ PCR-based diagnostic assays annually; collaborates with 10+ researchers on peer-reviewed manuscripts.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">01/2020 &ndash; 08/2024</div>
+          <h5>Graduate Research Assistant</h5>
+          <div class="tl-org">Korea Research Institute of Bioscience and Biotechnology (KRIBB) &middot; Daejeon, South Korea</div>
+          <p>Performed cDNA library prep and viral genome annotation across 18+ HTS datasets spanning 105 plant species; optimized molecular workflows, increasing throughput by 20%; authored 12 peer-reviewed publications; mentored 15+ graduate students.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">03/2013 &ndash; 01/2020</div>
+          <h5>Assistant Researcher</h5>
+          <div class="tl-org">Amhara Regional Agricultural Research Institute (ARARI) &middot; Bahir Dar, Ethiopia</div>
+          <p>Ran 1,000+ PCR assays and 30 DAS/NCM-ELISA diagnostics for potato and sweet potato pathogens; developed 10+ in-vitro propagation protocols for potato, sweet potato, ginger, bamboo and banana; trained 100+ undergraduates in aseptic technique.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-kicker">Toolkit</div>
+    <h2 class="section-title">Skills</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <h6 style="font-family:'Source Serif 4',serif;font-weight:600;">Molecular Biology</h6>
+        <p style="color:var(--muted);font-size:.92rem;">PCR, qPCR, cDNA library prep, ELISA, cloning, transformation, DNA/RNA extraction, vector construction, gel electrophoresis.</p>
+      </div>
+      <div class="col-md-6">
+        <h6 style="font-family:'Source Serif 4',serif;font-weight:600;">Plant Virology</h6>
+        <p style="color:var(--muted);font-size:.92rem;">Virus-induced gene silencing, infectious clones, virus&ndash;host interaction assays, greenhouse inoculations.</p>
+      </div>
+      <div class="col-md-6">
+        <h6 style="font-family:'Source Serif 4',serif;font-weight:600;">Plant Tissue Culture</h6>
+        <p style="color:var(--muted);font-size:.92rem;">Meristem culture, in-vitro mass propagation, protocol optimization.</p>
+      </div>
+      <div class="col-md-6">
+        <h6 style="font-family:'Source Serif 4',serif;font-weight:600;">Bioinformatics</h6>
+        <p style="color:var(--muted);font-size:.92rem;">RNA-seq analysis, sequence assembly, BLAST, virome profiling, phylogenetic analysis.</p>
+      </div>
+      <div class="col-md-6">
+        <h6 style="font-family:'Source Serif 4',serif;font-weight:600;">Programming &amp; Data Analysis</h6>
+        <p style="color:var(--muted);font-size:.92rem;">R (intermediate), SAS.</p>
+      </div>
+      <div class="col-md-6">
+        <h6 style="font-family:'Source Serif 4',serif;font-weight:600;">Laboratory Management</h6>
+        <p style="color:var(--muted);font-size:.92rem;">Biosafety compliance, equipment handling, inventory control, BSL-3 facility operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <h6>Mesele Tilahun Belete</h6>
+        <p>Postdoctoral Research Associate researching plant virus discovery, virus&ndash;host interactions, and HTS-based virome diagnostics at APQA / KRIBB.</p>
+      </div>
+      <div class="col-lg-4">
+        <h6>Quick Links</h6>
+        <div class="d-flex flex-column gap-2">
+          <a href="about.html">About</a>
+          <a href="research.html">Research</a>
+          <a href="publications.html">Publications</a>
+          <a href="projects.html">Projects</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h6>Contact</h6>
+        <p class="mb-1"><a href="mailto:mesele1621@gmail.com">mesele1621@gmail.com</a></p>
+        <p class="mb-1">+82-10-4202-1889</p>
+        <p class="mb-1">Gimcheon, Republic of Korea</p>
+      </div>
+    </div>
+    <div class="foot-bottom">&copy; <span id="year"></span> Mesele Tilahun Belete. Built with Bootstrap 5 &middot; Hosted on GitHub Pages.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const toggle = document.getElementById('themeToggle');
+  const icon = toggle.querySelector('i');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    icon.className = document.body.classList.contains('dark-mode') ? 'bi bi-sun' : 'bi bi-moon';
+  });
+</script>
+</body>
+</html>
