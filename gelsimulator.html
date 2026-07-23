@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCR Gel Electrophoresis Simulator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .control-group {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .control-group h3 {
+            margin-top: 0;
+            color: #a8d8ff;
+        }
+        
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gel-container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        #gelCanvas {
+            border: 3px solid #333;
+            border-radius: 10px;
+            background: #1a1a1a;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 100%;
+        }
+        
+        .lane-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .lane-control {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .lane-control h4 {
+            margin: 0 0 8px;
+            color: #ffd700;
+            font-size: 12px;
+        }
+        
+        .band-input {
+            margin: 3px 0;
+            padding: 4px;
+            font-size: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .download-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .format-selector {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .download-btn {
+            background: linear-gradient(45deg, #10ac84, #00d2d3);
+            font-size: 16px;
+            padding: 12px 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧬 PCR Gel Electrophoresis Simulator</h1>
+        
+        <div class="controls">
+            <div class="control-group">
+                <h3>Gel Settings</h3>
+                <label for="gelPercent">Gel Percentage (%):</label>
+                <select id="gelPercent">
+                    <option value="0.8">0.8%</option>
+                    <option value="1.0" selected>1.0%</option>
+                    <option value="1.5">1.5%</option>
+                    <option value="2.0">2.0%</option>
+                </select>
+                
+                <label for="ladderType">DNA Ladder Type:</label>
+                <select id="ladderType">
+                    <option value="50bp">50bp Ladder</option>
+                    <option value="100bp" selected>100bp Ladder</option>
+                    <option value="1kb">1kb Ladder</option>
+                </select>
+                
+                <label for="numLanes">Number of Lanes:</label>
+                <select id="numLanes">
+                    <option value="6">6</option>
+                    <option value="8" selected>8</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="15">15</option>
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="24">24</option>
+                    <option value="26">26</option>
+                    <option value="28">28</option>
+                    <option value="30">30</option>
+                </select>
+                <div id="editSection" style="margin-top: 20px; display: none;">
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h3 style="color: #a8d8ff; margin-top: 0;">Edit Gel Configuration</h3>
+                    <p style="margin: 10px 0; color: #ffffff;">Editing: <span id="editingGelName" style="color: #ffd700; font-weight: bold;"></span></p>
+                    <p style="margin: 10px 0; color: #cccccc; font-size: 14px;">Make your changes above and click "Save Changes" to update this configuration.</p>
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button onclick="saveEditedGel()" style="background: linear-gradient(45deg, #10ac84, #00d2d3);">💾 Save Changes</button>
+                        <button onclick="saveAsNewGel()" style="background: linear-gradient(45deg, #667eea, #764ba2);">📋 Save As New</button>
+                        <button onclick="cancelEdit()" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">❌ Cancel Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+            <div class="control-group">
+                <h3>Appearance</h3>
+                <label for="brightness">Band Brightness:</label>
+                <input type="range" id="brightness" min="0.3" max="1" step="0.1" value="0.8">
+                
+                <label for="contrast">Contrast:</label>
+                <input type="range" id="contrast" min="0.5" max="2" step="0.1" value="1.2">
+                
+                <label for="bandColor">Band Color:</label>
+                <select id="bandColor">
+                    <option value="#ffffff" selected>White</option>
+                    <option value="#00ff88">Green (EtBr)</option>
+                    <option value="#ff4444">Red (SYBR Safe)</option>
+                    <option value="#4488ff">Blue (Methylene Blue)</option>
+                    <option value="#ffaa00">Orange (Loading Dye)</option>
+                </select>
+                
+                <label for="labelPosition">Lane Labels:</label>
+                <select id="labelPosition">
+                    <option value="below" selected>Below</option>
+                    <option value="above">Above</option>
+                    <option value="middle">Middle</option>
+                    <option value="none">None</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="gel-container">
+            <canvas id="gelCanvas" width="800" height="400"></canvas>
+        </div>
+        
+        <div class="lane-controls" id="laneControls">
+            <!-- Lane controls will be generated here -->
+        </div>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="updateGel()" style="background: linear-gradient(45deg, #667eea, #764ba2);">🔬 Update Gel</button>
+            <button onclick="clearAllBands()" style="background: linear-gradient(45deg, #f093fb, #f5576c);">🗑️ Clear All</button>
+            <button onclick="addRandomBands()" style="background: linear-gradient(45deg, #4facfe, #00f2fe);">🎲 Random Bands</button>
+        </div>
+        
+        <div class="download-section">
+            <div class="download-controls">
+                <div class="format-selector">
+                    <label for="downloadFormat" style="margin: 0; color: #a8d8ff;">Format:</label>
+                    <select id="downloadFormat" style="width: auto; margin-left: 10px;">
+                        <option value="png">PNG</option>
+                        <option value="jpg">JPG</option>
+                        <option value="pdf">PDF</option>
+                    </select>
+                </div>
+                
+                <div class="format-selector">
+                    <label style="margin: 0; color: #a8d8ff;">
+                        <input type="checkbox" id="includeLabels" checked style="width: auto; margin-right: 8px;">
+                        Include Labels
+                    </label>
+                </div>
+                
+                <div class="format-selector">
+                    <label style="margin: 0; color: #a8d8ff;">
+                        <input type="checkbox" id="highRes" style="width: auto; margin-right: 8px;">
+                        High Resolution
+                    </label>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <button class="download-btn" onclick="downloadGel()">📥 Download Gel Image</button>
+                <button class="download-btn" onclick="saveGelData()" style="background: linear-gradient(45deg, #667eea, #764ba2);">💾 Save Gel Data</button>
+                <button class="download-btn" onclick="loadGelData()" style="background: linear-gradient(45deg, #f093fb, #f5576c);">📂 Load Gel Data</button>
+            </div>
+            
+            <div id="saveSection" style="margin-top: 20px; display: none;">
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h3 style="color: #a8d8ff; margin-top: 0;">Save Gel Configuration</h3>
+                    <input type="text" id="saveFileName" placeholder="Enter save name (e.g., My PCR Results)" 
+                           style="width: 300px; margin-right: 10px; display: inline-block;">
+                    <button onclick="confirmSave()" style="background: linear-gradient(45deg, #10ac84, #00d2d3);">✅ Confirm Save</button>
+                    <button onclick="cancelSave()" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">❌ Cancel</button>
+                </div>
+            </div>
+            
+            <div id="loadSection" style="margin-top: 20px; display: none;">
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h3 style="color: #a8d8ff; margin-top: 0;">Load Saved Gel</h3>
+                    <select id="savedGelsList" style="width: 300px; margin-right: 10px; display: inline-block;">
+                        <option value="">Select a saved gel...</option>
+                    </select>
+                    <button onclick="confirmLoad()" style="background: linear-gradient(45deg, #10ac84, #00d2d3);">✅ Load</button>
+                    <button onclick="cancelLoad()" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">❌ Cancel</button>
+                    <button onclick="deleteSavedGel()" style="background: linear-gradient(45deg, #ff4757, #c44569);">🗑️ Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gelCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // DNA Ladder definitions (in base pairs)
+        const ladders = {
+            '50bp': {
+                name: '50bp Ladder',
+                bands: [1000, 900, 800, 700, 600, 500, 400, 300, 250, 200, 150, 100, 50],
+                range: '50-1000bp'
+            },
+            '100bp': {
+                name: '100bp Ladder', 
+                bands: [3000, 2000, 1500, 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100],
+                range: '100-3000bp'
+            },
+            '1kb': {
+                name: '1kb Ladder',
+                bands: [10000, 8000, 6000, 5000, 4000, 3000, 2000, 1500, 1000],
+                range: '1-10kb'
+            }
+        };
+        
+        let laneData = {};
+        let laneStrengths = {};
+        let laneNames = {};
+        
+        function initializeLanes() {
+            const numLanes = parseInt(document.getElementById('numLanes').value);
+            const ladderType = document.getElementById('ladderType').value;
+            const controlsContainer = document.getElementById('laneControls');
+            controlsContainer.innerHTML = '';
+            laneData = {};
+            laneNames = {};
+            
+            // Lane 0 is the ladder (first position)
+            const selectedLadder = ladders[ladderType];
+            const ladderDiv = document.createElement('div');
+            ladderDiv.className = 'lane-control';
+            ladderDiv.innerHTML = `
+                <h4>Ladder</h4>
+                <p style="font-size: 10px; margin: 5px 0;">${selectedLadder.name}</p>
+                <p style="font-size: 9px; margin: 2px 0; color: #ccc;">${selectedLadder.range}</p>
+            `;
+            laneData[0] = selectedLadder.bands.slice();
+            laneNames[0] = selectedLadder.name;
+            controlsContainer.appendChild(ladderDiv);
+            
+            // Sample lanes 1 through numLanes-1
+            for (let i = 1; i < numLanes; i++) {
+                const laneDiv = document.createElement('div');
+                laneDiv.className = 'lane-control';
+                laneDiv.innerHTML = `
+                    <h4>Lane ${i}</h4>
+                    <input type="text" class="band-input" placeholder="Band sizes (bp)" 
+                           onchange="updateLaneBands(${i}, this.value)">
+                    <select class="band-input" onchange="updateLaneStrength(${i}, this.value)">
+                        <option value="medium">Medium</option>
+                        <option value="weak">Weak</option>
+                        <option value="bold">Bold</option>
+                    </select>
+                    <input type="text" class="band-input" placeholder="Sample name" 
+                           onchange="updateLaneName(${i}, this.value)">
+                `;
+                laneData[i] = [];
+                controlsContainer.appendChild(laneDiv);
+            }
+        }
+        
+        function updateLaneBands(lane, bandsString) {
+            if (bandsString.trim() === '') {
+                laneData[lane] = [];
+            } else {
+                laneData[lane] = bandsString.split(',').map(b => parseInt(b.trim())).filter(b => !isNaN(b));
+            }
+        }
+        
+        function updateLaneStrength(lane, strength) {
+            laneStrengths[lane] = strength;
+        }
+        
+        function updateLaneName(lane, name) {
+            laneNames[lane] = name.trim();
+        }
+        
+        function getBandStrengthValues(strength) {
+            switch(strength) {
+                case 'weak':
+                    return { brightness: 0.3, height: 2, blur: 4 };
+                case 'medium':
+                    return { brightness: 0.7, height: 3, blur: 6 };
+                case 'bold':
+                    return { brightness: 1.0, height: 4, blur: 10 };
+                default:
+                    return { brightness: 0.7, height: 3, blur: 6 };
+            }
+        }
+        
+        function calculateBandPosition(bp, gelPercent, ladderType) {
+            // Simulate band migration based on size and gel percentage
+            const maxDistance = 300; // pixels from wells
+            const logBp = Math.log10(bp);
+            
+            // Set min/max based on ladder type for better scaling
+            let logMin, logMax;
+            switch(ladderType) {
+                case '50bp':
+                    logMin = Math.log10(50);
+                    logMax = Math.log10(1000);
+                    break;
+                case '1kb':
+                    logMin = Math.log10(1000);
+                    logMax = Math.log10(10000);
+                    break;
+                case '100bp':
+                default:
+                    logMin = Math.log10(100);
+                    logMax = Math.log10(3000);
+                    break;
+            }
+            
+            // Normalize and apply gel percentage effect
+            let position = ((logMax - logBp) / (logMax - logMin)) * maxDistance;
+            
+            // Adjust for gel percentage (higher % = better resolution for small fragments)
+            const gelFactor = parseFloat(gelPercent);
+            position *= (1 + (gelFactor - 1) * 0.2);
+            
+            return Math.max(20, Math.min(maxDistance, position));
+        }
+        
+        function drawGel() {
+            const numLanes = parseInt(document.getElementById('numLanes').value);
+            const gelPercent = document.getElementById('gelPercent').value;
+            const ladderType = document.getElementById('ladderType').value;
+            const brightness = parseFloat(document.getElementById('brightness').value);
+            const contrast = parseFloat(document.getElementById('contrast').value);
+            const bandColor = document.getElementById('bandColor').value;
+            const labelPosition = document.getElementById('labelPosition').value;
+            
+            // Adjust canvas width based on number of lanes
+            const minWidth = 800;
+            const maxWidth = 1400;
+            const calculatedWidth = Math.max(minWidth, Math.min(maxWidth, numLanes * 40 + 200));
+            canvas.width = calculatedWidth;
+            
+            // Clear canvas
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw gel background with subtle texture
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#111111');
+            gradient.addColorStop(1, '#000000');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw wells with narrower width
+            const laneWidth = canvas.width / numLanes;
+            const wellWidth = Math.max(6, laneWidth * 0.4); // Reduced from 0.6 to 0.4
+            const wellHeight = 15;
+            const wellY = 10;
+            
+            ctx.fillStyle = '#333333';
+            for (let i = 0; i < numLanes; i++) {
+                const x = (i + 0.5) * laneWidth - wellWidth / 2;
+                ctx.fillRect(x, wellY, wellWidth, wellHeight);
+            }
+            
+            // Draw lane dividers
+            ctx.strokeStyle = '#222222';
+            ctx.lineWidth = 1;
+            for (let i = 1; i < numLanes; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i * laneWidth, 0);
+                ctx.lineTo(i * laneWidth, canvas.height);
+                ctx.stroke();
+            }
+            
+            // Draw bands with enhanced visibility and elliptical shape
+            for (let lane = 0; lane < numLanes; lane++) {
+                if (laneData[lane] && laneData[lane].length > 0) {
+                    const laneCenter = (lane + 0.5) * laneWidth;
+                    const laneStrength = laneStrengths[lane] || 'medium';
+                    const strengthValues = getBandStrengthValues(laneStrength);
+                    
+                    laneData[lane].forEach(bp => {
+                        const yPos = wellY + wellHeight + calculateBandPosition(bp, gelPercent, ladderType);
+                        const bandWidth = Math.max(4, wellWidth * 0.8); // Reduced band width
+                        const bandHeight = strengthValues.height * contrast;
+                        
+                        // Enhanced visibility for specific marker bands
+                        let bandBrightness = strengthValues.brightness * brightness * contrast;
+                        let shadowBlur = strengthValues.blur;
+                        
+                        if (lane === 0) { // Ladder lane - enhance bright bands based on ladder type
+                            if ((ladderType === '100bp' && (bp === 500 || bp === 1000)) ||
+                                (ladderType === '50bp' && (bp === 500 || bp === 250)) ||
+                                (ladderType === '1kb' && (bp === 1000 || bp === 3000))) {
+                                bandBrightness = Math.min(1, bandBrightness * 1.3);
+                            }
+                        }
+                        
+                        // Create glow effect with enhanced contrast
+                        ctx.shadowColor = bandColor;
+                        ctx.shadowBlur = shadowBlur * contrast;
+                        ctx.fillStyle = bandColor;
+                        ctx.globalAlpha = Math.min(1, bandBrightness);
+                        
+                        // Draw elliptical bands using save/restore and scale transform
+                        ctx.save();
+                        ctx.translate(laneCenter, yPos + bandHeight / 2);
+                        ctx.scale(1, 0.6); // Make bands slightly elliptical (flatten vertically)
+                        
+                        // Draw rounded rectangle as ellipse
+                        ctx.beginPath();
+                        ctx.roundRect(-bandWidth / 2, -bandHeight / 2, bandWidth, bandHeight, bandHeight / 2);
+                        ctx.fill();
+                        
+                        ctx.restore();
+                        
+                        // Reset shadow and alpha
+                        ctx.shadowBlur = 0;
+                        ctx.globalAlpha = 1;
+                    });
+                }
+            }
+            
+            // Draw lane labels based on position setting
+            if (labelPosition !== 'none') {
+                ctx.fillStyle = '#cccccc';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'center';
+                
+                let labelY;
+                switch (labelPosition) {
+                    case 'above':
+                        labelY = wellY - 5;
+                        ctx.textBaseline = 'bottom';
+                        break;
+                    case 'middle':
+                        labelY = canvas.height / 2;
+                        ctx.textBaseline = 'middle';
+                        ctx.fillStyle = 'rgba(204, 204, 204, 0.7)';
+                        break;
+                    case 'below':
+                    default:
+                        labelY = canvas.height - 25;
+                        ctx.textBaseline = 'alphabetic';
+                        break;
+                }
+                
+                for (let i = 0; i < numLanes; i++) {
+                    const laneCenter = (i + 0.5) * laneWidth;
+                    let laneName;
+                    
+                    if (i === 0) {
+                        laneName = laneNames[0] || ladders[ladderType].name;
+                    } else {
+                        laneName = laneNames[i] || `Lane ${i}`;
+                    }
+                    
+                    ctx.fillText(laneName, laneCenter, labelY);
+                }
+                
+                // Reset text baseline
+                ctx.textBaseline = 'alphabetic';
+            }
+            
+            // Draw size markers for ladder (lane 0) - only if there's enough space
+            if (laneData[0] && laneData[0].length > 0 && laneWidth > 25) {
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'left';
+                
+                laneData[0].forEach(bp => {
+                    const yPos = wellY + wellHeight + calculateBandPosition(bp, gelPercent, ladderType);
+                    const displaySize = bp >= 1000 ? `${bp/1000}kb` : `${bp}bp`;
+                    ctx.fillText(displaySize, 5, yPos + 2);
+                });
+            }
+            
+            // Draw title
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(`${gelPercent}% Agarose Gel - ${numLanes} Lanes`, canvas.width / 2, canvas.height - 10);
+        }
+        
+        function updateGel() {
+            drawGel();
+        }
+        
+        function clearAllBands() {
+            const numLanes = parseInt(document.getElementById('numLanes').value);
+            for (let i = 1; i < numLanes; i++) {
+                laneData[i] = [];
+                laneStrengths[i] = 'medium';
+            }
+            
+            // Clear input fields and reset dropdowns
+            const inputs = document.querySelectorAll('.band-input');
+            inputs.forEach(input => {
+                if (input.tagName === 'SELECT') {
+                    input.value = 'medium';
+                } else {
+                    input.value = '';
+                }
+            });
+            
+            drawGel();
+        }
+        
+        function addRandomBands() {
+            const numLanes = parseInt(document.getElementById('numLanes').value);
+            const possibleSizes = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1500, 2000, 2500, 3000];
+            const strengths = ['weak', 'medium', 'bold'];
+            
+            for (let i = 1; i < numLanes; i++) {
+                const numBands = Math.floor(Math.random() * 4) + 1;
+                laneData[i] = [];
+                
+                for (let j = 0; j < numBands; j++) {
+                    const randomSize = possibleSizes[Math.floor(Math.random() * possibleSizes.length)];
+                    if (!laneData[i].includes(randomSize)) {
+                        laneData[i].push(randomSize);
+                    }
+                }
+                
+                // Assign random strength to each lane
+                laneStrengths[i] = strengths[Math.floor(Math.random() * strengths.length)];
+                
+                laneData[i].sort((a, b) => b - a); // Sort descending
+            }
+            
+            // Update the dropdown selectors to reflect the random strengths
+            setTimeout(() => {
+                const selects = document.querySelectorAll('select.band-input');
+                selects.forEach((select, index) => {
+                    const laneNumber = index + 1; // Lane numbers start from 1 for sample lanes
+                    if (laneStrengths[laneNumber]) {
+                        select.value = laneStrengths[laneNumber];
+                    }
+                });
+            }, 100);
+            
+            drawGel();
+        }
+        
+        function createHighResolutionCanvas() {
+            const originalCanvas = canvas;
+            const scale = document.getElementById('highRes').checked ? 3 : 1;
+            const includeLabels = document.getElementById('includeLabels').checked;
+            
+            // Create high-resolution canvas
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            const baseWidth = originalCanvas.width;
+            const baseHeight = originalCanvas.height;
+            const labelHeight = includeLabels ? 100 : 0;
+            
+            tempCanvas.width = baseWidth * scale;
+            tempCanvas.height = (baseHeight + labelHeight) * scale;
+            
+            // Scale context for high-res rendering
+            tempCtx.scale(scale, scale);
+            
+            // Get current settings
+            const numLanes = parseInt(document.getElementById('numLanes').value);
+            const gelPercent = document.getElementById('gelPercent').value;
+            const brightness = parseFloat(document.getElementById('brightness').value);
+            const contrast = parseFloat(document.getElementById('contrast').value);
+            const bandColor = document.getElementById('bandColor').value;
+            
+            // Draw white background for clean output
+            tempCtx.fillStyle = '#ffffff';
+            tempCtx.fillRect(0, 0, baseWidth, baseHeight + labelHeight);
+            
+            // Draw gel area with black background
+            tempCtx.fillStyle = '#000000';
+            tempCtx.fillRect(0, 0, baseWidth, baseHeight);
+            
+            // Draw wells
+            const laneWidth = baseWidth / numLanes;
+            const wellWidth = Math.max(6, laneWidth * 0.4);
+            const wellHeight = 15;
+            const wellY = 10;
+            
+            tempCtx.fillStyle = '#333333';
+            for (let i = 0; i < numLanes; i++) {
+                const x = (i + 0.5) * laneWidth - wellWidth / 2;
+                tempCtx.fillRect(x, wellY, wellWidth, wellHeight);
+            }
+            
+            // Draw lane dividers
+            tempCtx.strokeStyle = '#222222';
+            tempCtx.lineWidth = 1;
+            for (let i = 1; i < numLanes; i++) {
+                tempCtx.beginPath();
+                tempCtx.moveTo(i * laneWidth, 0);
+                tempCtx.lineTo(i * laneWidth, baseHeight);
+                tempCtx.stroke();
+            }
+            
+            // Draw bands
+            for (let lane = 1; lane <= numLanes; lane++) {
+                if (laneData[lane] && laneData[lane].length > 0) {
+                    const laneCenter = (lane - 0.5) * laneWidth;
+                    const laneStrength = laneStrengths[lane] || 'medium';
+                    const strengthValues = getBandStrengthValues(laneStrength);
+                    
+                    laneData[lane].forEach(bp => {
+                        const yPos = wellY + wellHeight + calculateBandPosition(bp, gelPercent);
+                        const bandWidth = Math.max(4, wellWidth * 0.8);
+                        const bandHeight = strengthValues.height * contrast;
+                        
+                        let bandBrightness = strengthValues.brightness * brightness * contrast;
+                        let shadowBlur = strengthValues.blur;
+                        
+                        if (lane === 1) {
+                            if (bp === 500 || bp === 1000) {
+                                bandBrightness = Math.min(1, bandBrightness * 1.3);
+                            }
+                        }
+                        
+                        tempCtx.shadowColor = bandColor;
+                        tempCtx.shadowBlur = shadowBlur * contrast;
+                        tempCtx.fillStyle = bandColor;
+                        tempCtx.globalAlpha = Math.min(1, bandBrightness);
+                        
+                        tempCtx.save();
+                        tempCtx.translate(laneCenter, yPos + bandHeight / 2);
+                        tempCtx.scale(1, 0.6);
+                        
+                        tempCtx.beginPath();
+                        tempCtx.roundRect(-bandWidth / 2, -bandHeight / 2, bandWidth, bandHeight, bandHeight / 2);
+                        tempCtx.fill();
+                        
+                        tempCtx.restore();
+                        tempCtx.shadowBlur = 0;
+                        tempCtx.globalAlpha = 1;
+                    });
+                }
+            }
+            
+            if (includeLabels) {
+                // Draw white background for labels area
+                tempCtx.fillStyle = '#ffffff';
+                tempCtx.fillRect(0, baseHeight, baseWidth, labelHeight);
+                
+                // Draw lane labels
+                tempCtx.fillStyle = '#000000';
+                tempCtx.font = 'bold 14px Arial';
+                tempCtx.textAlign = 'center';
+                
+                for (let i = 1; i <= numLanes; i++) {
+                    const laneCenter = (i - 0.5) * laneWidth;
+                    const laneName = laneNames[i] || (i === 1 ? 'Ladder' : `Lane ${i}`);
+                    tempCtx.fillText(laneName, laneCenter, baseHeight + 25);
+                }
+                
+                // Draw ladder sizes on the left
+                if (laneData[1] && laneData[1].length > 0) {
+                    tempCtx.font = '11px Arial';
+                    tempCtx.textAlign = 'left';
+                    tempCtx.fillStyle = '#000000';
+                    
+                    laneData[1].forEach((bp, index) => {
+                        const yPos = wellY + wellHeight + calculateBandPosition(bp, gelPercent);
+                        tempCtx.fillText(bp + ' bp', 5, yPos + 2);
+                    });
+                }
+                
+                // Draw gel information
+                tempCtx.font = 'bold 16px Arial';
+                tempCtx.textAlign = 'center';
+                tempCtx.fillStyle = '#000000';
+                tempCtx.fillText(`${gelPercent}% Agarose Gel Electrophoresis`, baseWidth / 2, baseHeight + 50);
+                
+                // Add date and time
+                const now = new Date();
+                tempCtx.font = '12px Arial';
+                tempCtx.fillText(`Generated: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`, baseWidth / 2, baseHeight + 75);
+            }
+            
+            return tempCanvas;
+        }
+        
+        function downloadGel() {
+            try {
+                const format = document.getElementById('downloadFormat').value;
+                const tempCanvas = createHighResolutionCanvas();
+                
+                // Generate filename with timestamp
+                const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+                const filename = `gel_electrophoresis_${timestamp}.${format}`;
+                
+                if (format === 'pdf') {
+                    // For PDF, we'll download as PNG since full PDF generation requires external libraries
+                    // that aren't available in this environment
+                    const dataURL = tempCanvas.toDataURL('image/png', 1.0);
+                    downloadFile(dataURL, `gel_electrophoresis_${timestamp}.png`);
+                    alert('Note: PDF format downloaded as high-quality PNG. For true PDF conversion, please use an online PNG-to-PDF converter.');
+                } else {
+                    const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png';
+                    const quality = format === 'jpg' ? 0.95 : 1.0;
+                    const dataURL = tempCanvas.toDataURL(mimeType, quality);
+                    downloadFile(dataURL, filename);
+                }
+                
+                console.log('Download initiated for:', filename);
+            } catch (error) {
+                console.error('Download failed:', error);
+                alert('Download failed. Please try again.');
+            }
+        }
+        
+        function downloadFile(dataURL, filename) {
+            const link = document.createElement('a');
+            link.style.display = 'none';
+            link.download = filename;
+            link.href = dataURL;
+            
+            // Append to body, click, and remove
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Clean up the object URL after a delay
+            setTimeout(() => {
+                if (dataURL.startsWith('blob:')) {
+                    URL.revokeObjectURL(dataURL);
+                }
+            }, 1000);
+        }
+        
+        // Save/Load/Edit functionality using in-memory storage (session-based)
+        let savedGels = {};
+        let currentEditingGel = null;
+        
+        function saveGelData() {
+            document.getElementById('saveSection').style.display = 'block';
+            document.getElementById('loadSection').style.display = 'none';
+            document.getElementById('saveFileName').focus();
+        }
+        
+        function loadGelData() {
+            // Hide edit section if it's open
+            document.getElementById('editSection').style.display = 'none';
+            currentEditingGel = null;
+            
+            document.getElementById('loadSection').style.display = 'block';
+            document.getElementById('saveSection').style.display = 'none';
+            updateSavedGelsList();
+        }
+        
+        function confirmSave() {
+            const fileName = document.getElementById('saveFileName').value.trim();
+            if (!fileName) {
+                alert('Please enter a name for your gel configuration.');
+                return;
+            }
+            
+            // Check if name already exists (unless we're editing)
+            if (savedGels[fileName] && currentEditingGel !== fileName) {
+                if (!confirm(`A gel configuration named "${fileName}" already exists. Do you want to overwrite it?`)) {
+                    return;
+                }
+            }
+            
+            const gelData = {
+                numLanes: parseInt(document.getElementById('numLanes').value),
+                gelPercent: document.getElementById('gelPercent').value,
+                brightness: document.getElementById('brightness').value,
+                contrast: document.getElementById('contrast').value,
+                bandColor: document.getElementById('bandColor').value,
+                laneData: JSON.parse(JSON.stringify(laneData)),
+                laneStrengths: JSON.parse(JSON.stringify(laneStrengths)),
+                laneNames: JSON.parse(JSON.stringify(laneNames)),
+                timestamp: new Date().toISOString()
+            };
+            
+            savedGels[fileName] = gelData;
+            
+            document.getElementById('saveSection').style.display = 'none';
+            document.getElementById('saveFileName').value = '';
+            
+            alert(`Gel configuration "${fileName}" has been saved successfully!`);
+        }
+        
+        function cancelSave() {
+            document.getElementById('saveSection').style.display = 'none';
+            document.getElementById('saveFileName').value = '';
+        }
+        
+        function updateSavedGelsList() {
+            const select = document.getElementById('savedGelsList');
+            select.innerHTML = '<option value="">Select a saved gel...</option>';
+            
+            Object.keys(savedGels).forEach(name => {
+                const option = document.createElement('option');
+                option.value = name;
+                const date = new Date(savedGels[name].timestamp).toLocaleDateString();
+                option.textContent = `${name} (${date})`;
+                select.appendChild(option);
+            });
+        }
+        
+        function confirmLoad() {
+            const selectedName = document.getElementById('savedGelsList').value;
+            if (!selectedName) {
+                alert('Please select a gel configuration to load.');
+                return;
+            }
+            
+            const gelConfig = savedGels[selectedName];
+            if (!gelConfig) {
+                alert('Selected gel configuration not found.');
+                return;
+            }
+            
+            loadGelConfiguration(gelConfig);
+            
+            document.getElementById('loadSection').style.display = 'none';
+            document.getElementById('editSection').style.display = 'none';
+            currentEditingGel = null;
+            
+            alert(`Gel configuration "${selectedName}" has been loaded successfully!`);
+        }
+        
+        function editSavedGel() {
+            const selectedName = document.getElementById('savedGelsList').value;
+            if (!selectedName) {
+                alert('Please select a gel configuration to edit.');
+                return;
+            }
+            
+            const gelConfig = savedGels[selectedName];
+            if (!gelConfig) {
+                alert('Selected gel configuration not found.');
+                return;
+            }
+            
+            // Load the configuration for editing
+            loadGelConfiguration(gelConfig);
+            
+            // Set up edit mode
+            currentEditingGel = selectedName;
+            document.getElementById('editingGelName').textContent = selectedName;
+            document.getElementById('loadSection').style.display = 'none';
+            document.getElementById('editSection').style.display = 'block';
+            
+            // Scroll to the edit section
+            document.getElementById('editSection').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function loadGelConfiguration(gelConfig) {
+            // Load the configuration
+            document.getElementById('numLanes').value = gelConfig.numLanes;
+            document.getElementById('gelPercent').value = gelConfig.gelPercent;
+            document.getElementById('brightness').value = gelConfig.brightness;
+            document.getElementById('contrast').value = gelConfig.contrast;
+            document.getElementById('bandColor').value = gelConfig.bandColor;
+            
+            laneData = JSON.parse(JSON.stringify(gelConfig.laneData));
+            laneStrengths = JSON.parse(JSON.stringify(gelConfig.laneStrengths));
+            laneNames = JSON.parse(JSON.stringify(gelConfig.laneNames));
+            
+            // Reinitialize lanes and update display
+            initializeLanes();
+            populateLaneControls();
+            drawGel();
+        }
+        
+        function saveEditedGel() {
+            if (!currentEditingGel) {
+                alert('No gel is currently being edited.');
+                return;
+            }
+            
+            const gelData = {
+                numLanes: parseInt(document.getElementById('numLanes').value),
+                gelPercent: document.getElementById('gelPercent').value,
+                brightness: document.getElementById('brightness').value,
+                contrast: document.getElementById('contrast').value,
+                bandColor: document.getElementById('bandColor').value,
+                laneData: JSON.parse(JSON.stringify(laneData)),
+                laneStrengths: JSON.parse(JSON.stringify(laneStrengths)),
+                laneNames: JSON.parse(JSON.stringify(laneNames)),
+                timestamp: new Date().toISOString()
+            };
+            
+            savedGels[currentEditingGel] = gelData;
+            
+            document.getElementById('editSection').style.display = 'none';
+            currentEditingGel = null;
+            
+            alert(`Gel configuration has been updated successfully!`);
+        }
+        
+        function saveAsNewGel() {
+            if (!currentEditingGel) {
+                alert('No gel is currently being edited.');
+                return;
+            }
+            
+            const newName = prompt(`Enter a new name for this gel configuration:`);
+            if (!newName || newName.trim() === '') {
+                return;
+            }
+            
+            const trimmedName = newName.trim();
+            
+            // Check if name already exists
+            if (savedGels[trimmedName]) {
+                if (!confirm(`A gel configuration named "${trimmedName}" already exists. Do you want to overwrite it?`)) {
+                    return;
+                }
+            }
+            
+            const gelData = {
+                numLanes: parseInt(document.getElementById('numLanes').value),
+                gelPercent: document.getElementById('gelPercent').value,
+                brightness: document.getElementById('brightness').value,
+                contrast: document.getElementById('contrast').value,
+                bandColor: document.getElementById('bandColor').value,
+                laneData: JSON.parse(JSON.stringify(laneData)),
+                laneStrengths: JSON.parse(JSON.stringify(laneStrengths)),
+                laneNames: JSON.parse(JSON.stringify(laneNames)),
+                timestamp: new Date().toISOString()
+            };
+            
+            savedGels[trimmedName] = gelData;
+            
+            document.getElementById('editSection').style.display = 'none';
+            currentEditingGel = null;
+            
+            alert(`Gel configuration "${trimmedName}" has been saved successfully!`);
+        }
+        
+        function cancelEdit() {
+            if (confirm('Are you sure you want to cancel editing? Any unsaved changes will be lost.')) {
+                document.getElementById('editSection').style.display = 'none';
+                currentEditingGel = null;
+                
+                // Optionally reload the original configuration
+                const originalName = document.getElementById('editingGelName').textContent;
+                if (originalName && savedGels[originalName]) {
+                    loadGelConfiguration(savedGels[originalName]);
+                }
+            }
+        }
+        
+        function cancelLoad() {
+            document.getElementById('loadSection').style.display = 'none';
+        }
+        
+        function deleteSavedGel() {
+            const selectedName = document.getElementById('savedGelsList').value;
+            if (!selectedName) {
+                alert('Please select a gel configuration to delete.');
+                return;
+            }
+            
+            if (confirm(`Are you sure you want to delete "${selectedName}"?`)) {
+                delete savedGels[selectedName];
+                updateSavedGelsList();
+                alert(`Gel configuration "${selectedName}" has been deleted.`);
+            }
+        }
+        
+        function populateLaneControls() {
+            const numLanes = parseInt(document.getElementById('numLanes').value);
+            const controlsContainer = document.getElementById('laneControls');
+            
+            // Clear and regenerate controls
+            controlsContainer.innerHTML = '';
+            
+            // Add ladder control (lane 0)
+            const ladderDiv = document.createElement('div');
+            ladderDiv.className = 'lane-control';
+            ladderDiv.innerHTML = `
+                <h4>Ladder</h4>
+                <p style="font-size: 10px; margin: 5px 0;">100bp Ladder</p>
+                <p style="font-size: 9px; margin: 2px 0; color: #ccc;">3000-100bp</p>
+            `;
+            controlsContainer.appendChild(ladderDiv);
+            
+            // Add sample lane controls (lanes 1 to numLanes-1)
+            for (let i = 1; i < numLanes; i++) {
+                const laneDiv = document.createElement('div');
+                laneDiv.className = 'lane-control';
+                
+                const bandsString = laneData[i] ? laneData[i].join(', ') : '';
+                const strength = laneStrengths[i] || 'medium';
+                const name = laneNames[i] || '';
+                
+                laneDiv.innerHTML = `
+                    <h4>Lane ${i}</h4>
+                    <input type="text" class="band-input" placeholder="Band sizes (bp)" 
+                           value="${bandsString}" onchange="updateLaneBands(${i}, this.value)">
+                    <select class="band-input" onchange="updateLaneStrength(${i}, this.value)">
+                        <option value="weak" ${strength === 'weak' ? 'selected' : ''}>Weak</option>
+                        <option value="medium" ${strength === 'medium' ? 'selected' : ''}>Medium</option>
+                        <option value="bold" ${strength === 'bold' ? 'selected' : ''}>Bold</option>
+                    </select>
+                    <input type="text" class="band-input" placeholder="Sample name" 
+                           value="${name}" onchange="updateLaneName(${i}, this.value)">
+                `;
+                
+                controlsContainer.appendChild(laneDiv);
+            }
+        }
+        // Event listeners
+        document.getElementById('numLanes').addEventListener('change', initializeLanes);
+        document.getElementById('gelPercent').addEventListener('change', drawGel);
+        document.getElementById('brightness').addEventListener('input', drawGel);
+        document.getElementById('contrast').addEventListener('input', drawGel);
+        document.getElementById('bandColor').addEventListener('change', drawGel);
+        document.getElementById('labelPosition').addEventListener('change', drawGel);
+        document.getElementById('includeLabels').addEventListener('change', updateGel);
+        document.getElementById('highRes').addEventListener('change', updateGel);
+        
+        // Add enter key support for save functionality
+        document.getElementById('saveFileName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                confirmSave();
+            }
+        });
+        
+        // Initialize
+        initializeLanes();
+        drawGel();
+    </script>
+</body>
+</html>
